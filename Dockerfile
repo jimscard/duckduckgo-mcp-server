@@ -2,7 +2,7 @@
 # Multi-stage build for security and minimal image size
 
 # Build stage
-FROM python:3.11-alpine AS builder
+FROM python:3.14-alpine AS builder
 
 # Install build dependencies
 RUN apk add --no-cache \
@@ -25,12 +25,12 @@ RUN python -m venv /opt/venv && \
     pip install --no-cache-dir .
 
 # Runtime stage
-FROM python:3.11-alpine
+FROM python:3.14-alpine
 
 # Add security labels
 LABEL maintainer="Jim Scardelis <jim@jceltd.com>" \
       description="MCP Server for searching via DuckDuckGo" \
-      version="0.2.0" \
+      version="0.2.1" \
       org.opencontainers.image.source="https://github.com/jimscard/duckduckgo-mcp-server"
 
 # Install runtime dependencies only
